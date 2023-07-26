@@ -1,20 +1,19 @@
 #include "shell.h"
 
 /**
- * main - The gate to the simple shell
- * @ac: (Unused variable) Number of arguements passed to the shell
- * @av: array containing arguements passed to the program
- * @env: array containing all environment variables
+ * main - gate to the shell
+ * @ac: (Unused Variable) counter of args
+ * @av: All arguements passed to the shell
+ * @env: envrionmental variables
  * Return: 0
  */
 
 int main(__attribute__((unused))int ac, char **av, char **env)
 {
-	char *usercomm = NULL, **tokenizedcomm = NULL;
+	char *usercomm = NULL, **comms = NULL;
 	int pvalue = 0, ok = 0, pcheck = 0;
 
-	while (1)
-	{
+	do {
 		errno = 0;
 		usercomm = mygetline();
 		if (errno == 0 && usercomm == NULL)
@@ -22,24 +21,24 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 		if (usercomm)
 		{
 			pvalue++;
-			tokenizedcomm = tokenization(usercomm);
-			if (!tokenizedcomm)
+			comms = tokenization(usercomm);
+			if (!comms)
 				free(usercomm);
-			if (!cmpstr(tokenizedcomm[0], "env"))
+			if (!cmpstr(comms[0], "env"))
 				mygetenv(env);
 			else
 			{
-				pcheck = pseperation(env, &tokenizedcomm[0]);
-				ok = birth(av, env, tokenizedcomm, usercomm, pvalue, pcheck);
-				if (ok == 200)
+				pcheck = plocate(&comms[0], env);
+				ok = birth(comms, av, env, usercomm, pvalue, pcheck);
+				if (ok == 100)
 				{
 					free(usercomm);
 					return (0);
 				}
 				if (pcheck == 0)
-					free(tokenizedcomm[0]);
+					free(comms[0]);
 			}
-			free(tokenizedcomm);
+			free(comms);
 		}
 		else
 		{
@@ -48,6 +47,7 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 			exit(ok);
 		}
 		free(usercomm);
-	}
+	} while (1);
+
 	return (0);
 }
