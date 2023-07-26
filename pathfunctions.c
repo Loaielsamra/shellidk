@@ -24,7 +24,7 @@ int pseperation(char **env, char **usercomm)
 	{
 		pvalue = lenstr(tokenholder);
 		preal = malloc((pvalue + length + 2) * sizeof(char));
-		if (preal == NULL)
+		if (!preal)
 		{
 			free(pfake);
 			return (-1);
@@ -42,7 +42,7 @@ int pseperation(char **env, char **usercomm)
 		tokenholder = strtok(NULL, ":");
 	}
 	tokenholder = '\0';
-	free(preal);
+	free(pfake);
 	return (-1);
 }
 

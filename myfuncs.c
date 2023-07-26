@@ -24,7 +24,7 @@ char **tokenization(char *str)
 	usercomm = malloc((num + 2) * sizeof(char *));
 	if (usercomm == NULL)
 		return (NULL);
-	tokenz= strtok(str, "\n\t\r");
+	tokenz = strtok(str, "\n\t\r");
 	for (i = 0; tokenz != NULL; i++)
 	{
 		usercomm[i] = tokenz;
