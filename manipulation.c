@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * catsr=tr - conatenates strings
+ * catstr - conatenates strings
  * @dest: destinination string
  * @src: source string
  * Return: 0

@@ -30,7 +30,7 @@ char **tokenization(char *usercomm)
 	for (i = 0; tokenhold != NULL; i++)
 	{
 		comms[i] = tokenhold;
-		tokenhold = strtok(NULL," \n\t\r");
+		tokenhold = strtok(NULL, " \n\t\r");
 	}
 	comms[i] = NULL;
 	return (comms);
