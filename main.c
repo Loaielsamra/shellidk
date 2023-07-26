@@ -42,7 +42,7 @@ int main(__attribute__((unused))int ac, char **av, char **env)
 			free(tokenizedcomm);
 		}
 		else
-		{i
+		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
 			exit(ok);
